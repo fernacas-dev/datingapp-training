@@ -1,0 +1,8 @@
+<h1>{{ title }}</h1>
+
+<ul>
+  @for (user of (users$ | async); track $index)
+  {
+  <li>{{user.id}} - {{user.username}}</li>
+  }
+</ul>
