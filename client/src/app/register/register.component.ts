@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { AccountService } from '../_services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ export class RegisterComponent {
   @Output() cancelRegister = new EventEmitter();
 
   private readonly accountService = inject(AccountService);
+  private readonly toastrService = inject(ToastrService);
 
   model: any = {};
 
@@ -19,7 +21,7 @@ export class RegisterComponent {
       .subscribe(response => {
         console.log(response);
         this.cancel();
-      }, err => console.log(err));
+      }, err => this.toastrService.error(err.error));
   }
 
   cancel() {
