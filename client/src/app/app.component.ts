@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import { AccountService } from './_services/account.service';
+import { User } from './_models/user';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,10 @@ import { User } from '../models/user.model';
 export class AppComponent {
   title = 'The Dating App';
 
-  private readonly http = inject(HttpClient);
-  users$ = this.getUsers();
+  private readonly accountService = inject(AccountService);
 
-  getUsers(): Observable<any> {
-    return this.http.get('http://localhost:5230/api/users');
+  setCurrentUser() {
+    const user: User = JSON.parse(localStorage.getItem('user')!);
+    this.accountService.setCurrentUser(user);
   }
 }
