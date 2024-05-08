@@ -24,7 +24,6 @@ namespace API.DTOs
         public string City { get; set; }
         public string Country { get; set; }
 
-        [JsonIgnore]
         public ICollection<PhotoDto> Photos { get; set; }
     }
 }
