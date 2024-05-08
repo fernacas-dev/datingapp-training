@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
@@ -17,8 +15,13 @@ import { MembersListComponent } from './members/members-list/members-list.compon
 import { MembersDetailComponent } from './members/members-detail/members-detail.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
-import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './_modules/shared.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { errorInterceptor } from './_interceptors/error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { jwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,18 +32,24 @@ import { SharedModule } from './_modules/shared.module';
     MembersListComponent,
     MembersDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
+    MemberCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TooltipModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

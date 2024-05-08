@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ReplaySubject, map } from 'rxjs';
 import { User } from '../_models/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private readonly baseUrl = 'http://localhost:5230/api/';
+  private readonly baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User | null>(1);
-  currentUser$ = this.currentUserSource.asObservable();
+  currentUser$ = this.currentUserSource.asObservable().pipe();
 
   private readonly http = inject(HttpClient);
 

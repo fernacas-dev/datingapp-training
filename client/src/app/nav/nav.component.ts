@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -22,7 +22,7 @@ export class NavComponent {
   login() {
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/members');
-    }, error => this.toastr.error(error.error));
+    });
   }
 
   logout() {
