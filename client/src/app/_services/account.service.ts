@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class AccountService {
   private readonly baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User | null>(1);
-  currentUser$ = this.currentUserSource.asObservable().pipe();
+  currentUser$ = this.currentUserSource.asObservable();
 
   private readonly http = inject(HttpClient);
 
