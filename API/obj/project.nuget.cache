@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eUQkw0dHI5s6X2Rr4gkgCx4Kl/lW5Ewk/D2IgRVRF9SS5oQm5fcDQYiS2DUSvx9W8lCvKTdwgAjVW0MhlIj2rQ==",
+  "dgSpecHash": "72x1w+1EdSOlOUq5TjSUsCGn1wnI+dOsHNYkyLiNV8MzMI7w/9WOz9R8kkGMCXg5dYZoLNTgyhmirWh78wXczg==",
   "success": true,
-  "projectFilePath": "D:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj",
+  "projectFilePath": "d:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fernando\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Fernando\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

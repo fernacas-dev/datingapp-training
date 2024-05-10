@@ -139,3 +139,5 @@ D:\Estudio\BulkyBook\DatingApp\API\obj\Debug\net8.0\API.sourcelink.json
 D:\Estudio\BulkyBook\DatingApp\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Estudio\BulkyBook\DatingApp\API\bin\Debug\net8.0\Data\UserSeedData.json
 D:\Estudio\BulkyBook\DatingApp\API\bin\Debug\net8.0\AutoMapper.dll
+D:\Estudio\BulkyBook\DatingApp\API\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\Estudio\BulkyBook\DatingApp\API\bin\Debug\net8.0\Newtonsoft.Json.dll

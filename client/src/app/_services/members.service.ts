@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Member } from '../_models/member';
 import { Observable, map, of } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +15,6 @@ export class MembersService {
   http = inject(HttpClient);
 
   getMembers(): Observable<Member[]> {
-
     if (this.members.length > 0) return of(this.members);
 
     return this.http.get<Member[]>(this.baseUrl + "users")
@@ -43,5 +41,13 @@ export class MembersService {
           return member;
         })
       );
+  }
+
+  setMainPhoto(photoId: number) {
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+  }
+
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
 }
