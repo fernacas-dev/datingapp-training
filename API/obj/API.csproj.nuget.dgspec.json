@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj": {}
+    "D:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "d:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj": {
+    "D:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj",
+        "projectUniqueName": "D:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "d:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj",
+        "projectPath": "D:\\Estudio\\BulkyBook\\DatingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
-        "outputPath": "d:\\Estudio\\BulkyBook\\DatingApp\\API\\obj\\",
+        "outputPath": "D:\\Estudio\\BulkyBook\\DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Users\\Fernando\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
