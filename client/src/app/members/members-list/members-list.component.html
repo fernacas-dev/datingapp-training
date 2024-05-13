@@ -1,3 +1,42 @@
+<div class="text-center mt-3">
+  <h2>Your matches - {{pagination?.totalItems}} found</h2>
+</div>
+
+<div class="container mt-3">
+  <form #form="ngForm" class="row row-cols-lg-auto g-3 align-items-center" (ngSubmit)="loadMembers()"
+    autocomplete="off">
+    <div class="form-group">
+      <label>Age from:</label>
+      <input type="number" class="form-control" style="width: 70px;" name="minAge" [(ngModel)]="userParams.minAge">
+    </div>
+    <div class="form-group px-2">
+      <label>Age to:</label>
+      <input type="number" class="form-control" style="width: 70px;" name="maxAge" [(ngModel)]="userParams.maxAge">
+    </div>
+
+    <div class="form-group">
+      <label>Show: </label>
+      <select name="gender" style="width: 130px;" class="form-control" [(ngModel)]="userParams.gender">
+        @for (gender of genderList; track $index) {
+        <option [value]="gender.value">{{gender.display}}</option>
+        }
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Apply Filters</button>
+    <button class="btn btn-info" (click)="resetFilters()">Reset Filters</button>
+
+    <div class="col">
+      <div class="btn-group float-end">
+        <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="userParams.orderBy"
+          btnRadio="lastActive" (click)="loadMembers()">Last Active</button>
+        <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="userParams.orderBy" btnRadio="created"
+          (click)="loadMembers()">Newest members</button>
+      </div>
+    </div>
+  </form>
+</div>
+
 @if(members$|async; as members) {
 <div class="row">
   @for (member of members?.result; track $index) {

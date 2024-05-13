@@ -12,7 +12,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -30,6 +30,15 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParms)
         {
+
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            userParms.CurrentUsername = User.GetUsername();
+
+            if (string.IsNullOrEmpty(userParms.Gender))
+            {
+                userParms.Gender = user.Gender == "male" ? "female" : "male";
+            }
+
             var users = await _userRepository.GetMembersAsync(userParms);
 
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
