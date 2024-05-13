@@ -22,8 +22,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next): Observable<HttpE
                 });
 
               throw modalStateErrors;
-            } else {
+            } else if (typeof (err.error) === 'object') {
               toastr.error(err.statusText, err.status.toString());
+            } else {
+              toastr.error(err.error, err.statusText);
             }
             break;
           case 401:

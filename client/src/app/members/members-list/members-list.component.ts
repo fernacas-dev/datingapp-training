@@ -31,7 +31,8 @@ export class MembersListComponent implements OnInit {
 
   pageChanged(event: any) {
     this.userParams.pageNumber = event.page
-    this.membersSubject$.next();
+    this.memberServices.setUserParams(this.userParams);
+    this.loadMembers();
   }
 
   ngOnInit(): void {
@@ -40,7 +41,7 @@ export class MembersListComponent implements OnInit {
 
   resetFilters() {
     this.userParams = this.memberServices.resetUserParams();
-    this.membersSubject$.next();
+    this.loadMembers();
   }
 
   loadMembers() {
