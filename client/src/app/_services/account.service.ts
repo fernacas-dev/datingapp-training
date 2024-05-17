@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { ReplaySubject, map } from 'rxjs';
 import { User } from '../_models/user';
 import { environment } from '../../environments/environment';
+import { PresenceService } from './presence.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AccountService {
   currentUser$ = this.currentUserSource.asObservable();
 
   private readonly http = inject(HttpClient);
+  private readonly presenceService = inject(PresenceService);
 
   login(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/login', model)
@@ -21,6 +23,7 @@ export class AccountService {
           const user = response;
           if (user) {
             this.setCurrentUser(user);
+            this.presenceService.createHubConnection(user);
           }
         })
       )
@@ -32,6 +35,7 @@ export class AccountService {
         map((user: User) => {
           if (user) {
             this.setCurrentUser(user);
+            this.presenceService.createHubConnection(user);
           }
         }),
       );
@@ -48,6 +52,7 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+    this.presenceService.stopHubConnection();
   }
 
   getDecodedToken(token: string) {

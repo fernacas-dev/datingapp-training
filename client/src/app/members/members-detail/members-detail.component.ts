@@ -7,6 +7,7 @@ import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Message } from '../../_models/message';
 import { MessageService } from '../../_services/message.service';
 import { Member } from '../../_models/member';
+import { PresenceService } from '../../_services/presence.service';
 
 @Component({
   selector: 'app-members-detail',
@@ -18,6 +19,7 @@ export class MembersDetailComponent implements OnInit {
   private readonly membersService = inject(MembersService);
   private readonly route = inject(ActivatedRoute);
   private readonly messageService = inject(MessageService);
+  public presence = inject(PresenceService);
 
   @ViewChild('memberTabs', { static: true }) memberTabs!: TabsetComponent;
   activeTab!: TabDirective;

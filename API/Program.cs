@@ -1,5 +1,6 @@
 using API.Extensions;
 using API.Middleware;
+using API.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddSignalR();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -30,13 +32,11 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors(x => x
+app.UseCors(builder => builder
     .AllowAnyHeader()
     .AllowAnyMethod()
-    .WithOrigins([
-        "*"
-    ])
-);
+    .AllowCredentials()
+    .WithOrigins("http://localhost:4200"));
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -44,7 +44,8 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     _ = app.MapControllers();
+    _ = app.MapHub<PresenceHub>("hubs/presence");
+    _ = app.MapHub<MessageHub>("hubs/message");
 });
-
 
 app.Run();
