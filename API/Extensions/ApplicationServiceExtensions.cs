@@ -21,11 +21,14 @@ namespace API.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<LogUserActivity>();
 
+            // Replace repositories by UnitOfWork pattern
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             // Repositories
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
+            // services.AddScoped<IUserRepository, UserRepository>();
+            // services.AddScoped<IUserRepository, UserRepository>();
+            // services.AddScoped<ILikesRepository, LikesRepository>();
+            // services.AddScoped<IMessageRepository, MessageRepository>();
 
             // Configure AutoMapperService
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
