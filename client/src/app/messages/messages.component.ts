@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
 import { MessageService } from '../_services/message.service';
+import { ConfirmService } from '../_services/confirm.service';
 
 @Component({
   selector: 'app-messages',
@@ -17,6 +18,7 @@ export class MessagesComponent {
   loading = false;
 
   private readonly messageService = inject(MessageService);
+  private readonly confirmService = inject(ConfirmService);
 
   loadMessages() {
     this.loading = true;
@@ -28,8 +30,12 @@ export class MessagesComponent {
   }
 
   deleteMessage(id: number) {
-    this.messageService.deleteMessage(id).subscribe(() => {
-      this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+    this.confirmService.confirm('Confirm delete message', 'This cannot be undone').subscribe(result => {
+      if (result) {
+        this.messageService.deleteMessage(id).subscribe(() => {
+          this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+        });
+      }
     });
   }
 

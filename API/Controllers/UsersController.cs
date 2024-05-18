@@ -30,12 +30,12 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParms)
         {
 
-            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            var gender = await _unitOfWork.UserRepository.GetUserGender(User.GetUsername());
             userParms.CurrentUsername = User.GetUsername();
 
             if (string.IsNullOrEmpty(userParms.Gender))
             {
-                userParms.Gender = user.Gender == "male" ? "female" : "male";
+                userParms.Gender = gender == "male" ? "female" : "male";
             }
 
             var users = await _unitOfWork.UserRepository.GetMembersAsync(userParms);

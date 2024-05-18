@@ -41,11 +41,15 @@ app.UseCors(builder => builder
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseEndpoints(endpoints =>
 {
     _ = app.MapControllers();
     _ = app.MapHub<PresenceHub>("hubs/presence");
     _ = app.MapHub<MessageHub>("hubs/message");
+    _ = app.MapFallbackToController("Index", "Fallback");
 });
 
 app.Run();
